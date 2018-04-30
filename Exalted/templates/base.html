@@ -1,0 +1,54 @@
+{% load extra_tags %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% load sorting_tags %}
+{% load query_parameters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exalted Management</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'site.css' %}" />
+    {% bootstrap_css %}
+    {% block head %}
+    {% endblock head %}
+</head>
+<body>
+    <div class="container main">
+        {% for message in messages %}
+          <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>{{ message }}
+          </div>
+        {% endfor %}
+    </div>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid col-xs-4">
+                    <ul class="nav nav-tabs">
+                        <li><a class="active" href="{% url 'charms' %}">Home</a></li>
+                        <li><a href="{% url 'characters' %}">Characters</a></li>
+                        <li><a href="{% url 'artifacts' %}">Artifacts</a></li>
+                        <li><a href="{% url 'other' %}">Other</a></li>
+                    </ul>
+        </div>
+        <div class="col-xs-8">
+            {% block top_panel %}
+            {% endblock top_panel%}
+        </div>
+    </nav>
+    {% block content %}
+    <div class="container main">
+    </div>
+    {% endblock content %}
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        crossorigin = "anonymous">
+</script>
+
+{% bootstrap_javascript %}
+</div>
+</body>
+</html>

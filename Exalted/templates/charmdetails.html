@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load extra_tags %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% load query_parameters %}
+
+{% block head %}
+    {{ filter.form.media.css }}
+{% endblock head %}
+{% block top_panel %}
+<div class="navbar-top navbar-text pull-right"><h3 class="heading"><span class="label label-primary "> Charm id {{object.charm_id}}</span></h3></div>
+{% endblock top_panel %}
+{% block content %}
+<div class="container">
+<div class="well">
+    <form class="form" action="" method="post">{% csrf_token %}
+    <div>
+    {% for field in form %}
+        <div class="
+        col-xs-{% if field.name == 'charm_before' or field.name == 'charm_tags' or field.name == 'charm_description' or field.name == 'charm_name'%}12
+        {% else %}4
+        {% endif %} formm-group-{% if field.name == 'charm_name'%}lg{% else %}sm{% endif %}">
+            {% bootstrap_field field %}
+        </div>
+        {{field.name}}
+        {% if field.name == 'charm_before' %}
+        <span class="badge badge-primary">{{field.charm_before}}</span>
+            {% for preceding_charm in field.charm_before.charm_name %}
+                <div>
+                    {{ preceding_charm.charm_name }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endfor %}
+    </div>
+    <button class="btn btn-submit" type="submit" name="update">Update</button>
+    </form>
+</div>
+</div>
+{% endblock content %}

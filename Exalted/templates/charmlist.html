@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% load extra_tags %}
+{% load humanize %}
+{% load bootstrap3 %}
+{% load query_parameters %}
+
+{% block head %}
+    {{ filter.form.media.css }}
+{% endblock head %}
+
+{% block top_panel %}
+<div class="container-fluid">
+{% with request.GET.urlencode as querystring %}
+    <div class="text-center col-xs-6" >
+        <nav class="">
+            <div>
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </div>
+            <ul class="pagination col-xs-12 pull-right">
+            {% if page_obj.has_previous %}
+                <li>
+                    <a  class="col-xs-3 text-center" href="/charm/page/1/?{{ querystring }}">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li>
+                        <a class="col-xs-3 text-center" href="/charm/page/{{ page_obj.previous_page_number }}/?{{ querystring }}"><span aria-hidden="true">Previous</span></a>
+                </li>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <li>
+                    <a class="col-xs-3 text-center" href="/charm/page/{{ page_obj.next_page_number }}/?{{ querystring }}"><span aria-hidden="true">Next</span></a>
+                </li>
+                    <li>
+                    <a class="col-xs-3 text-center" href="/charm/page/{{ page_obj.paginator.num_pages }}/?{{ querystring }}"><span aria-hidden="true">&raquo;</span></a>
+                </li>
+
+
+            {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endwith %}
+    <div class="col-xs-6 panel panel-default panel-body">
+            <div class="col-xs-6">
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#filter">Filter</button>
+            </div>
+            <div class="col-xs-6">
+                <form class="form col-xs-6 pull-right" action="/charm/add" method="get">
+                    <button class="btn btn-submit" type="submit" name="filter">New</button>
+                </form>
+            </div>
+    </div>
+</div>
+{% endblock top_panel %}
+
+{% block content %}
+<div class="container main">
+    <div id="filter" class="well collapse form-group">
+        <form class="form" action="" method="get">
+                {% for item in filter.form %}
+                <div class = "col-sm-6 form-group">
+                <p class = "col-sm-6">{{ item.label}}</p>
+                <p class = "col-sm-6">{{ item }}</p>
+                </div>
+                {% endfor %}
+            <button class="btn btn-submit" type="submit" name="filter">Filter</button>
+        </form>
+    </div>
+{% if filter.qs %}
+    <table class="table">
+      <thead class="fixed">
+          <th class="col-xs-3">Name
+              <a href="?{% set_query_parameters order_by='charm_name' ordering='desc' %}">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+              </a>
+              <a href="?{% set_query_parameters order_by='charm_name' ordering='asc' %}">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+              </a>
+          </th>
+          <th class="text-left col-xs-2.5">Requirements
+              <a href="?{% set_query_parameters order_by='charm_essence_min' ordering='desc' %}">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+              </a>
+              <a href="?{% set_query_parameters order_by='charm_essence_min' ordering='asc' %}">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+              </a>
+          </th>
+          <th class="col-xs-2.5">
+          </th>
+          <th  class="col-xs-1">Exalted<br>
+              <a href="?{% set_query_parameters order_by='charm_ex_type__exalted_type_name' ordering='desc' %}">
+
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+              </a>
+              <a href="?{% set_query_parameters order_by='charm_ex_type__exalted_type_name' ordering='asc' %}">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+              </a>
+          </th>
+          <th  class="col-xs-1">Type<br>
+              <a href="?{% set_query_parameters order_by='charm_type__name' ordering='desc' %}">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+              </a>
+              <a href="?{% set_query_parameters order_by='charm_type__name' ordering='asc' %}">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+              </a>
+          </th>
+          <th class="col-xs-1">Duration<br>
+              <a href="?{% set_query_parameters order_by='charm_duration' ordering='desc' %}">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+              </a>
+              <a href="?{% set_query_parameters order_by='charm_duration' ordering='asc' %}">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+              </a></th>
+          <th class="col-xs-1">Costs<br>
+              <a href="?{% set_query_parameters order_by='charm_cost_motes'  ordering='desc' %}">
+                  <span class="glyphicon glyphicon-triangle-bottom"></span>
+              </a>
+              <a href="?{% set_query_parameters order_by='charm_cost_motes' ordering='asc' %}">
+                  <span class="glyphicon glyphicon-triangle-top"></span>
+              </a></th>
+          <!--<th>Created</th>
+          <th>Modified</th>-->
+      </thead>
+      <tbody>
+          {% for charm in charms %}
+              <tr>
+                  <td><a href="/charm/{{charm.charm_id}}/">
+                      {{ charm.charm_name }}</a></td>
+                  <td class="text-left">
+                   <span>
+                   Essence&nbsp;
+                   {% for essence_min in charm.charm_essence_min|get_range %}
+                      {%  if essence_min < charm.charm_essence_min %}
+                        &#9673;
+                      {% endif %}
+                   {% endfor %}
+                   </span>&nbsp;</td><td>
+                  {% for req in charm.requirementset.all %}
+                  {{req.requirement.name}}
+                  &nbsp;
+                   <span>
+                   {% for value in req.value|get_range %}
+                      {%  if value < req.value %}
+                        &#9673;
+                      {% endif %}
+                   {% endfor %}
+                   </span>&nbsp;
+                   {% endfor %}
+                   </td>
+                  <td>{{charm.charm_ex_type.exalted_type_name}}</td>
+                  <td>{{charm.charm_type.name}}</td>
+                  <td>{{charm.charm_duration}}</td>
+                  <td>
+                      {% if charm.charm_cost_motes %}
+                      {{ charm.charm_cost_motes }}m
+                      {% if charm.charm_cost_wp %}
+
+                      {% endif %}
+                      {% endif %}
+                      {% if charm.charm_cost_wp %}
+                      {{ charm.charm_cost_wp }}W
+                      {% endif %}
+                      {% if charm.charm_cost_other %}
+                      {% if charm.charm_cost_wp or charm.charm_cost_motes %}
+                      ,
+                      {% endif %}
+                      {{charm.charm_cost_other}}
+                      {% endif %}
+                  </td>
+<!--              <td>{{charm.charm_creation|naturaltime}}</td> -->
+<!--              <td>{{charm.charm_modified|naturaltime}}</td> -->
+              </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+{% else %}
+    <p>No charms selected.</p>
+{% endif %}
+<div class="pagination text-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+{% endblock content %}
