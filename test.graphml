@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <graph edgedefault="undirected">
+    <node id="2180 Summoning the Loyal Bow" />
+    <node id="83 Trance of Unhesitating Speed" />
+    <node id="2275 Boundless Arrow of the Unconquered Sun" />
+    <node id="2181 Forceful Arrow" />
+    <node id="397 Inexhaustable Bolts of Solar Fire" />
+    <node id="74 Accuracy Without Distance" />
+    <node id="79 Rain of Feathered Death" />
+    <node id="3759 All-Consuming Solar Flare" />
+    <node id="1788 Trance of Unfallible Accuracy" />
+    <node id="396 Essence Bolt of Devastation Technique" />
+    <node id="78 Phantom Arrow Technique" />
+    <node id="77 Immaculate Golden Bow" />
+    <node id="1787 Feathered Storm of Protection" />
+    <node id="3760 Heart-Incinerating Arrow" />
+    <node id="73 Arrow Storm Technique" />
+    <node id="2182 Flashing Vengeance Draw" />
+    <node id="84 Wise Arrow" />
+    <node id="2183 Solar Flare Methodology" />
+    <node id="3756 Barrier-Breaching Arrow" />
+    <node id="76 Essence Arrow Attack" />
+    <node id="2274 Golden Artillerist Method" />
+    <node id="2273 Lambent Bolt of Annihilation" />
+    <node id="2042 Elsewhere Arrow" />
+    <node id="1786 Feathered Wind of Protection" />
+    <node id="82 There Is No Wind" />
+    <node id="3758 Death-Unleashing Method" />
+    <node id="3757 Lithe Archer Discipline" />
+    <edge source="2180 Summoning the Loyal Bow" target="77 Immaculate Golden Bow" />
+    <edge source="2180 Summoning the Loyal Bow" target="78 Phantom Arrow Technique" />
+    <edge source="83 Trance of Unhesitating Speed" target="84 Wise Arrow" />
+    <edge source="83 Trance of Unhesitating Speed" target="73 Arrow Storm Technique" />
+    <edge source="83 Trance of Unhesitating Speed" target="2182 Flashing Vengeance Draw" />
+    <edge source="2275 Boundless Arrow of the Unconquered Sun" target="74 Accuracy Without Distance" />
+    <edge source="2181 Forceful Arrow" target="76 Essence Arrow Attack" />
+    <edge source="2181 Forceful Arrow" target="3756 Barrier-Breaching Arrow" />
+    <edge source="397 Inexhaustable Bolts of Solar Fire" target="2183 Solar Flare Methodology" />
+    <edge source="397 Inexhaustable Bolts of Solar Fire" target="79 Rain of Feathered Death" />
+    <edge source="397 Inexhaustable Bolts of Solar Fire" target="78 Phantom Arrow Technique" />
+    <edge source="74 Accuracy Without Distance" target="2274 Golden Artillerist Method" />
+    <edge source="74 Accuracy Without Distance" target="82 There Is No Wind" />
+    <edge source="74 Accuracy Without Distance" target="1788 Trance of Unfallible Accuracy" />
+    <edge source="79 Rain of Feathered Death" target="78 Phantom Arrow Technique" />
+    <edge source="3759 All-Consuming Solar Flare" target="3760 Heart-Incinerating Arrow" />
+    <edge source="3759 All-Consuming Solar Flare" target="78 Phantom Arrow Technique" />
+    <edge source="396 Essence Bolt of Devastation Technique" target="78 Phantom Arrow Technique" />
+    <edge source="78 Phantom Arrow Technique" target="76 Essence Arrow Attack" />
+    <edge source="1787 Feathered Storm of Protection" target="1786 Feathered Wind of Protection" />
+    <edge source="73 Arrow Storm Technique" target="1786 Feathered Wind of Protection" />
+    <edge source="2182 Flashing Vengeance Draw" target="3757 Lithe Archer Discipline" />
+    <edge source="84 Wise Arrow" target="2273 Lambent Bolt of Annihilation" />
+    <edge source="84 Wise Arrow" target="82 There Is No Wind" />
+    <edge source="76 Essence Arrow Attack" target="2273 Lambent Bolt of Annihilation" />
+    <edge source="2042 Elsewhere Arrow" target="82 There Is No Wind" />
+    <edge source="3758 Death-Unleashing Method" target="3757 Lithe Archer Discipline" />
+  </graph>
+</graphml>
