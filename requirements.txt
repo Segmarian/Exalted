@@ -9,7 +9,7 @@ django-braces==1.13.0
 django-crispy-forms==1.7.2
 django-extensions==2.0.7
 django-extra-views==0.10.0
-django-filter==1.1.0
+django-filter==2.4.0
 django-query-parameters==0.2.3
 django-sorting-bootstrap==1.1.1
 idna==2.6
