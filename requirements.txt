@@ -12,7 +12,7 @@ django-extra-views==0.10.0
 django-filter==2.4.0
 django-query-parameters==0.2.3
 django-sorting-bootstrap==1.1.1
-idna==2.6
+idna==3.7
 ipython-genutils==0.2.0
 jsonschema==2.6.0
 jupyter-core==4.11.2
